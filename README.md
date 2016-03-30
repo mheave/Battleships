@@ -1,6 +1,11 @@
 # Battleships
-implementation of game in typescript/js
+Basic implementation of the game Battleships.
 
-Basic one-way game vs the computer.
+The remit is a one-sided game against a computer with 3 ships (2 destroyers, 1 battleship) to be placed randomly on a 10x10 grid. 
 
-Console application done.
+User must be able to specify grid with the format Char(A-J) Number(1-10).
+
+Console application implementation using .net/C#.
+
+Web version using Typescript/js.
+

@@ -202,4 +202,3 @@ var BattleshipGame;
     })();
     BattleshipGame.BattleshipGameClass = BattleshipGameClass;
 })(BattleshipGame || (BattleshipGame = {}));
-//# sourceMappingURL=BattleshipInterfaces.js.map

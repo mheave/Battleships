@@ -1,56 +1,21 @@
 var Battleships;
 (function (Battleships) {
-    var GridPosition = (function () {
-        function GridPosition(x, y) {
-            var _this = this;
-            this.setPosition = function (x, y) {
-                _this.HorizontalPosition = x;
-                _this.VerticalPosition = y;
+    var BattleshipsGame = (function () {
+        function BattleshipsGame() {
+            this.TakeShot = function (shotCoordinates) {
+                if (!Grid.gridStringValid(shotCoordinates)) {
+                    return "invalid coordinates";
+                }
+                var gridCell = Grid.parse(shotCoordinates);
+                if (gridCell === null) {
+                    return "cant generate cell";
+                }
             };
-            this.HorizontalPosition = x;
-            this.VerticalPosition = y;
+            var shipGenerator = new Ship.ShipGenerator();
+            this.Ships = shipGenerator.Ships;
+            this.Shots = new Array();
         }
-        return GridPosition;
+        return BattleshipsGame;
     })();
-    Battleships.GridPosition = GridPosition;
-    var BattleshipGame = (function () {
-        function BattleshipGame() {
-            this.GenerateBoatPositions = function () {
-                //var item = items[Math.floor(Math.random() * items.length)];   
-            };
-            this.GameGrid = new Array();
-        }
-        return BattleshipGame;
-    })();
-    Battleships.BattleshipGame = BattleshipGame;
-    var GridCell = (function () {
-        function GridCell() {
-        }
-        return GridCell;
-    })();
-    Battleships.GridCell = GridCell;
-    var Ship = (function () {
-        function Ship() {
-        }
-        return Ship;
-    })();
-    Battleships.Ship = Ship;
-    var ShipComponent = (function () {
-        function ShipComponent(coordinates, shipDetail) {
-            this.Coordinates = coordinates;
-            this.HasBeenHit = false;
-            this.ShipDetails = shipDetail;
-        }
-        return ShipComponent;
-    })();
-    Battleships.ShipComponent = ShipComponent;
-    var ShipDetails = (function () {
-        function ShipDetails(name, size) {
-            this.Name = name;
-            this.SizeInGridSquares = size;
-        }
-        return ShipDetails;
-    })();
-    Battleships.ShipDetails = ShipDetails;
+    Battleships.BattleshipsGame = BattleshipsGame;
 })(Battleships || (Battleships = {}));
-//# sourceMappingURL=Battleships.js.map

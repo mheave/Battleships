@@ -46,6 +46,5 @@ namespace BattleshipsConsole
         {
             return Ships.Any(s => s.Components.Any(c => c.Coordinates.Horizontal == column));
         }
-
     }
 }

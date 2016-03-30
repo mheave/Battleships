@@ -16,18 +16,19 @@ namespace BattleshipsConsole
             var gameOver = false;
             while (!gameOver)
             {
-                Console.WriteLine("Enter a grid location of target:");
+                Console.WriteLine("Fire at location:");
                 var enteredShot = Console.ReadLine();
                 var shotResult = battleships.TakeShot(enteredShot);
                 Console.WriteLine(shotResult);
 
                 if (!battleships.AllShipsDestroyed) continue;
-                Console.WriteLine("Well done! You have sunken all of the ships in {0} shots.", battleships.NoOfShotsTaken);
-                Console.WriteLine("Thanks for playing battleships!");
+                Console.WriteLine("**********************************************************************************");
+                Console.WriteLine("******** Well done! You have sunken all of the ships in {0} shots. *************", battleships.NoOfShotsTaken);
+                Console.WriteLine("Thanks for playing Battleships!");
                 gameOver = true;
             }
-
-
+            Console.WriteLine("");
+            Console.WriteLine("Press any key to quit.");
             Console.ReadLine();
         }
     }

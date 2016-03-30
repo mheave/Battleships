@@ -16,7 +16,8 @@ namespace BattleshipsConsole
 
         public Battleships()
         {
-            _ships = ShipGenerator.GenerateAndReturnShips();
+            var shipGenerator = new ShipGenerator();
+            _ships = shipGenerator.Ships;
             _shots = new List<Shot>();
             _gridCellComparer = new GridCellComparer();
         }

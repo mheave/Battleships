@@ -28,7 +28,7 @@
     }
 
     export function parse(cell: string) {
-        var isValid = this.GridStringValid(cell);
+        var isValid = this.gridStringValid(cell);
         if (!isValid)
             return null;
 

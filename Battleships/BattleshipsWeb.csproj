@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Battleships.html" />
+    <Content Include="gulpfile.js" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -78,14 +79,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\Typescript\BattleshipInterfaces.js" />
+    <Content Include="Scripts\JS\BattleshipConcat.js" />
+    <Content Include="Scripts\Typescript\Battleships.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Scripts\Typescript\BattleshipInterfaces.ts" />
     <TypeScriptCompile Include="Scripts\Typescript\Battleships.ts" />
     <TypeScriptCompile Include="Scripts\Typescript\GridCell.ts" />
     <TypeScriptCompile Include="Scripts\Typescript\Ship.ts" />
@@ -95,9 +96,7 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scripts\JS\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

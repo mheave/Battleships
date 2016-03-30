@@ -2,23 +2,24 @@
 <html>
 <head>
     <title>Battleships - by Mark Heaver</title>
-    <script type="text/javascript" src="Scripts/Typescript/BattleshipInterfaces.js"></script>
+    <script type="text/javascript" src="Scripts/JS/BattleshipConcat.js"></script>
 	<meta charset="utf-8" />
 </head>
 <body>
 
     <script type="text/javascript">
-        var testPlayers = new BattleshipPlayer.TestPlayers();
-        var game = new BattleshipGame.BattleshipGameClass(testPlayers.PlayerOne, testPlayers.PlayerTwo);
-        game.ShotTaken("B1", "Human");
-        game.ShotTaken("B2", "Human");
-        game.ShotTaken("B3", "Human");
-        game.ShotTaken("B4", "Human");
-        game.ShotTaken("B5", "Human");
-        game.ShotTaken("A1", "Computer");
-        game.ShotTaken("A1", "Human");
-        game.ShotTaken("J8", "Computer");
-        game.ShotTaken("Z10", "Computer");
+        var game = new Battleships.BattleshipsGame();
+        console.log(game.TakeShot("A1"));
+
+        (() => {
+            console.log(game.TakeShot("A2"));
+            console.log(game.TakeShot("z10"));
+            console.log(game.TakeShot("A2"));
+            console.log(game.TakeShot("A3"));
+            console.log(game.TakeShot("A4"));
+            console.log(game.TakeShot("A5"));
+            console.log(game.TakeShot("A10"));
+        })()
     </script>
 </body>
 </html>

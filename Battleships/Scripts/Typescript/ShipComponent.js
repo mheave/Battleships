@@ -6,6 +6,6 @@ var ShipComponents;
             this.HasBeenHit = false;
         }
         return ShipComponent;
-    })();
+    }());
     ShipComponents.ShipComponent = ShipComponent;
 })(ShipComponents || (ShipComponents = {}));

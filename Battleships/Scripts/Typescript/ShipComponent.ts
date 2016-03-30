@@ -1,6 +1,6 @@
 ﻿module ShipComponents {   
     export class ShipComponent {
-        Coordinates: GridCell;
+        Coordinates: Grid.GridCell;
         HasBeenHit: boolean;
 
         constructor(coordinates: Grid.GridCell) {

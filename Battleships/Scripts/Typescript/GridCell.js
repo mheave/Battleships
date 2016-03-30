@@ -17,10 +17,10 @@ var Grid;
             this.Vertical = y;
         }
         return GridCell;
-    })();
+    }());
     Grid.GridCell = GridCell;
     function parse(cell) {
-        var isValid = this.GridStringValid(cell);
+        var isValid = this.gridStringValid(cell);
         if (!isValid)
             return null;
         var x = cell.toUpperCase().charAt(0);

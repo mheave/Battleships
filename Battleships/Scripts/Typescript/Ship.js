@@ -6,7 +6,7 @@ var Ship;
             this.Components = components;
         }
         return Ship;
-    })();
+    }());
     Ship_1.Ship = Ship;
     var ShipGenerator = (function () {
         function ShipGenerator() {
@@ -24,6 +24,6 @@ var Ship;
             this.GenerateShips();
         }
         return ShipGenerator;
-    })();
+    }());
     Ship_1.ShipGenerator = ShipGenerator;
 })(Ship || (Ship = {}));

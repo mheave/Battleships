@@ -6,6 +6,6 @@ var Shot;
             this.DidHit = hit;
         }
         return Shot;
-    })();
+    }());
     Shot_1.Shot = Shot;
 })(Shot || (Shot = {}));

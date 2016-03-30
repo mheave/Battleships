@@ -11,7 +11,7 @@ var Battleships;
             this.VerticalPosition = y;
         }
         return GridPosition;
-    }());
+    })();
     Battleships.GridPosition = GridPosition;
     var BattleshipGame = (function () {
         function BattleshipGame() {
@@ -21,19 +21,19 @@ var Battleships;
             this.GameGrid = new Array();
         }
         return BattleshipGame;
-    }());
+    })();
     Battleships.BattleshipGame = BattleshipGame;
     var GridCell = (function () {
         function GridCell() {
         }
         return GridCell;
-    }());
+    })();
     Battleships.GridCell = GridCell;
     var Ship = (function () {
         function Ship() {
         }
         return Ship;
-    }());
+    })();
     Battleships.Ship = Ship;
     var ShipComponent = (function () {
         function ShipComponent(coordinates, shipDetail) {
@@ -42,7 +42,7 @@ var Battleships;
             this.ShipDetails = shipDetail;
         }
         return ShipComponent;
-    }());
+    })();
     Battleships.ShipComponent = ShipComponent;
     var ShipDetails = (function () {
         function ShipDetails(name, size) {
@@ -50,6 +50,7 @@ var Battleships;
             this.SizeInGridSquares = size;
         }
         return ShipDetails;
-    }());
+    })();
     Battleships.ShipDetails = ShipDetails;
 })(Battleships || (Battleships = {}));
+//# sourceMappingURL=Battleships.js.map

@@ -44,7 +44,7 @@ var BattleshipPlayer;
             this.SetupPlayers();
         }
         return TestPlayers;
-    }());
+    })();
     BattleshipPlayer.TestPlayers = TestPlayers;
     var PlayerProfile = (function () {
         function PlayerProfile(name) {
@@ -52,7 +52,7 @@ var BattleshipPlayer;
             this.Ships = new Array();
         }
         return PlayerProfile;
-    }());
+    })();
     BattleshipPlayer.PlayerProfile = PlayerProfile;
 })(BattleshipPlayer || (BattleshipPlayer = {}));
 var BattleshipGameObjects;
@@ -68,7 +68,7 @@ var BattleshipGameObjects;
             this.VerticalPosition = y;
         }
         return GridPosition;
-    }());
+    })();
     BattleshipGameObjects.GridPosition = GridPosition;
     var ShipDetails = (function () {
         function ShipDetails(name, size) {
@@ -76,7 +76,7 @@ var BattleshipGameObjects;
             this.SizeInGridSquares = size;
         }
         return ShipDetails;
-    }());
+    })();
     BattleshipGameObjects.ShipDetails = ShipDetails;
     var ShipComponent = (function () {
         function ShipComponent(owner, coordinates, shipDetail) {
@@ -86,7 +86,7 @@ var BattleshipGameObjects;
             this.ShipDetails = shipDetail;
         }
         return ShipComponent;
-    }());
+    })();
     BattleshipGameObjects.ShipComponent = ShipComponent;
     var Ship = (function () {
         function Ship(shipDetail, coordinates) {
@@ -95,7 +95,7 @@ var BattleshipGameObjects;
             this.HasBeenDestroyed = false;
         }
         return Ship;
-    }());
+    })();
     BattleshipGameObjects.Ship = Ship;
 })(BattleshipGameObjects || (BattleshipGameObjects = {}));
 var BattleshipGameEvents;
@@ -116,7 +116,7 @@ var BattleshipGameEvents;
             }
         }
         return ShotEvent;
-    }());
+    })();
     BattleshipGameEvents.ShotEvent = ShotEvent;
 })(BattleshipGameEvents || (BattleshipGameEvents = {}));
 var BattleshipGame;
@@ -199,6 +199,7 @@ var BattleshipGame;
             this.setupShips();
         }
         return BattleshipGameClass;
-    }());
+    })();
     BattleshipGame.BattleshipGameClass = BattleshipGameClass;
 })(BattleshipGame || (BattleshipGame = {}));
+//# sourceMappingURL=BattleshipInterfaces.js.map

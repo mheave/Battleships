@@ -1,0 +1,6 @@
+C:\Users\mark_heaver\Documents\GitHub\Battleships\BattleshipsConsole\bin\Debug\BattleshipsConsole.exe.config
+C:\Users\mark_heaver\Documents\GitHub\Battleships\BattleshipsConsole\bin\Debug\BattleshipsConsole.exe
+C:\Users\mark_heaver\Documents\GitHub\Battleships\BattleshipsConsole\bin\Debug\BattleshipsConsole.pdb
+C:\Users\mark_heaver\Documents\GitHub\Battleships\BattleshipsConsole\obj\Debug\BattleshipsConsole.csprojResolveAssemblyReference.cache
+C:\Users\mark_heaver\Documents\GitHub\Battleships\BattleshipsConsole\obj\Debug\BattleshipsConsole.exe
+C:\Users\mark_heaver\Documents\GitHub\Battleships\BattleshipsConsole\obj\Debug\BattleshipsConsole.pdb

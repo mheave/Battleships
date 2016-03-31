@@ -5,21 +5,44 @@
     <script type="text/javascript" src="Scripts/JS/BattleshipConcat.js"></script>
 	<meta charset="utf-8" />
 </head>
-<body>
+<body onload="setupUIBindings()">
 
-    <script type="text/javascript">
-        var game = new Battleships.BattleshipsGame();
-        console.log(game.TakeShot("A1"));
+<h1>Battleships</h1>
 
-        (() => {
-            console.log(game.TakeShot("A2"));
-            console.log(game.TakeShot("z10"));
-            console.log(game.TakeShot("A2"));
-            console.log(game.TakeShot("A3"));
-            console.log(game.TakeShot("A4"));
-            console.log(game.TakeShot("A5"));
-            console.log(game.TakeShot("A10"));
-        })()
-    </script>
+<div>
+    <label for="shotCoordinates">Shoot at: </label><input type="text" id="shotCoordinates"/> <input type="button" id="shootButton" value="Shoot!"/>
+</div>
+
+<div id="shotResult"></div>
+
+
+<script type="text/javascript">
+    var game = new Battleships.BattleshipsGame();
+    var targetInput, shootbutton, shotResult;
+
+    function setupUIBindings() {
+        targetInput = document.getElementById('shotCoordinates');
+        shootbutton = document.getElementById('shootButton');
+        shotResult = document.getElementById('shotResult');
+
+        shootbutton.addEventListener('click', function () {
+            var shootAt = targetInput.value;
+            var result = game.takeShot(shootAt);
+            shotResult.textContent = result;
+            targetInput.value = "";
+            if (game.allShipsDestroyed()) {
+                gameOver();
+            }
+        });
+    }
+
+    function gameOver() {
+        targetInput.disabled = true;
+        shootbutton.disabled = true;
+        shotResult.textContent = "Congratulations! you have sunk all of the ships!";
+    }
+
+
+</script>
 </body>
 </html>

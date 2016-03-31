@@ -1,30 +1,12 @@
 ﻿module Grid {
-
     export class GridCell {
-        Horizontal: string;
-        Vertical: number;
+        horizontal: string;
+        vertical: number;
 
         constructor(x: string, y: number) {
-            this.Horizontal = x;
-            this.Vertical = y;
+            this.horizontal = x;
+            this.vertical = y;
         }
-
-        Try
-
-        GridStringValid = (coordinates: string) => {
-            var regEx = new RegExp("^[A-Ja-j]10$|^[A-Ja-j][0-9]$");
-            var valid = regEx.test(coordinates);
-            return valid;
-        }
-
-        AreGridCellsEqual = (cellOne: GridCell, cellTwo: GridCell) => {
-            if (cellOne === null || cellOne === undefined || cellTwo === null || cellTwo ===  undefined) {
-                return false;
-            }
-
-            return cellOne.Horizontal === cellTwo.Horizontal && cellOne.Vertical === cellTwo.Vertical;
-        }
-
     }
 
     export function parse(cell: string) {
@@ -48,7 +30,6 @@
             return false;
         }
 
-        return cellOne.Horizontal === cellTwo.Horizontal && cellOne.Vertical === cellTwo.Vertical;
+        return cellOne.horizontal === cellTwo.horizontal && cellOne.vertical === cellTwo.vertical;
     }     
-
 }

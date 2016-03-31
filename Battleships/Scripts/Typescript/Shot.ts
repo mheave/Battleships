@@ -1,12 +1,11 @@
-﻿module Shot {
+﻿module Shots {
     export class Shot {
-        CoordinatesOfShot: Grid.GridCell;
-        DidHit: boolean;
+        coordinatesOfShot: Grid.GridCell;
+        didHit: boolean;
 
         constructor(cell: Grid.GridCell, hit: boolean) {
-            this.CoordinatesOfShot = cell;
-            this.DidHit = hit;
+            this.coordinatesOfShot = cell;
+            this.didHit = hit;
         }
     }    
-
 }

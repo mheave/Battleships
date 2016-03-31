@@ -91,6 +91,7 @@
     <TypeScriptCompile Include="Scripts\Typescript\GridCell.ts" />
     <TypeScriptCompile Include="Scripts\Typescript\Ship.ts" />
     <TypeScriptCompile Include="Scripts\Typescript\ShipComponent.ts" />
+    <TypeScriptCompile Include="Scripts\Typescript\ShipGenerator.ts" />
     <TypeScriptCompile Include="Scripts\Typescript\Shot.ts" />
   </ItemGroup>
   <ItemGroup>

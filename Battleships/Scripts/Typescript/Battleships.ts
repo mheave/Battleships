@@ -1,16 +1,15 @@
 ﻿module Battleships {
-
     export class BattleshipsGame {
-        Ships: Array<Ship.Ship>;
-        Shots: Array<Shot.Shot>;    
+        ships: Array<Ships.Ship>;
+        shots: Array<Shots.Shot>;    
 
         constructor() {
-            var shipGenerator = new Ship.ShipGenerator();
-            this.Ships = shipGenerator.Ships;
-            this.Shots = new Array<Shot.Shot>();
+            var shipGenerator = new ShipGenerators.ShipGenerator();
+            this.ships = shipGenerator.ships;
+            this.shots = new Array<Shots.Shot>();
         }
 
-        TakeShot = (shotCoordinates: string) => {
+        takeShot = (shotCoordinates: string) => {
             if (!Grid.gridStringValid(shotCoordinates)) {
                 return "invalid coordinates";
             }
@@ -20,44 +19,45 @@
                 return "cant generate cell";
             }
 
-            if (this.CellAlreadyShotAt(gridCell)) {
+            if (this.cellAlreadyShotAt(gridCell)) {
                 return "already shot at";
             }
 
-            var shipHit = this.ReturnShipHit(gridCell);
+            var shipHit = this.returnShipHit(gridCell);
             if (shipHit === null) {
                 return "miss";
             }
 
-            if (this.WasShotFatalBlow(shipHit)) {
+            if (this.wasShotFatalBlow(shipHit)) {
                 return "fatality!";
             }
 
             return "Hit on ship";
         }
 
-        CellAlreadyShotAt = (cell: Grid.GridCell) => {
-            var existingShot = this.Shots.filter((s) => Grid.areGridCellsEqual(s.CoordinatesOfShot, cell));
+        cellAlreadyShotAt = (cell: Grid.GridCell) => {
+            var existingShot = this.shots.filter((s) => Grid.areGridCellsEqual(s.coordinatesOfShot, cell));
             if (existingShot.length > 0) {
                 return true;
             }
             return false;
         }
 
-        ReturnShipHit = (cell: Grid.GridCell) => {
-            var shipHit = this.ReturnIndexOfShipWhichHasComponentAtCoordinate(cell);
+        returnShipHit = (cell: Grid.GridCell) => {
+            var shipHit = this.returnIndexOfShipWhichHasComponentAtCoordinate(cell);
             if (shipHit === -1) {
-                this.RecordShot(cell, false);
+                this.recordShot(cell, false);
                 return null;
             }
-            this.RecordShot(cell, true);
+            this.recordShot(cell, true);
+            this.setShipComponentToHit(shipHit, cell);
             return shipHit;
         }
 
-        ReturnIndexOfShipWhichHasComponentAtCoordinate = (cell: Grid.GridCell) => {
-            for (var s = 0; s < this.Ships.length; s++) {
-                var ship = this.Ships[s];
-                var matchingCoordinates = ship.Components.filter((c) => Grid.areGridCellsEqual(c.Coordinates, cell));
+        returnIndexOfShipWhichHasComponentAtCoordinate = (cell: Grid.GridCell) => {
+            for (var s = 0; s < this.ships.length; s++) {
+                var ship = this.ships[s];
+                var matchingCoordinates = ship.components.filter((c) => Grid.areGridCellsEqual(c.coordinates, cell));
                 if (matchingCoordinates.length > 0) {
                     return s;
                 }            
@@ -65,24 +65,29 @@
             return -1;
         }
 
-        RecordShot = (cell: Grid.GridCell, didHit: boolean) => {
-            this.Shots.push(new Shot.Shot(cell, didHit));
+        recordShot = (cell: Grid.GridCell, didHit: boolean) => {
+            this.shots.push(new Shots.Shot(cell, didHit));
         }
 
-        SetShipComponentToHit = (shipIndex: number, cell: Grid.GridCell) => {
-            var ship = this.Ships[shipIndex];
-            for (var s = 0; s < ship.Components.length; s++) {
-                if (Grid.areGridCellsEqual(ship.Components[s].Coordinates, cell)) {
-                    this.Ships[shipIndex].Components[s].HasBeenHit = true;
+        setShipComponentToHit = (shipIndex: number, cell: Grid.GridCell) => {
+            var ship = this.ships[shipIndex];
+            for (var s = 0; s < ship.components.length; s++) {
+                if (Grid.areGridCellsEqual(ship.components[s].coordinates, cell)) {
+                    this.ships[shipIndex].components[s].hasBeenHit = true;
                     break;
                 }
             }
         }
 
-        WasShotFatalBlow = (shipIndex: number) => {
-            var shipHit = this.Ships[shipIndex];
-            return shipHit.Components.every((c) => c.HasBeenHit);
+        wasShotFatalBlow = (shipIndex: number) => {
+            var shipHit = this.ships[shipIndex];
+            return shipHit.components.every((c) => c.hasBeenHit);
+        }
+
+        allShipsDestroyed = () => {
+            var shipsDestroyed = this.ships.every((s) => s.components.every((c) => c.hasBeenHit));
+            console.log(shipsDestroyed);
+            return shipsDestroyed;
         }
     }
-
 }

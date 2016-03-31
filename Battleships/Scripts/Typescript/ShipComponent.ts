@@ -1,11 +1,11 @@
 ﻿module ShipComponents {   
     export class ShipComponent {
-        Coordinates: Grid.GridCell;
-        HasBeenHit: boolean;
+        coordinates: Grid.GridCell;
+        hasBeenHit: boolean;
 
         constructor(coordinates: Grid.GridCell) {
-            this.Coordinates = coordinates;
-            this.HasBeenHit = false;
+            this.coordinates = coordinates;
+            this.hasBeenHit = false;
         }
     }
 }

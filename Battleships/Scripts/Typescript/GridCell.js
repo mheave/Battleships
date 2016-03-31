@@ -2,22 +2,11 @@ var Grid;
 (function (Grid) {
     var GridCell = (function () {
         function GridCell(x, y) {
-            this.GridStringValid = function (coordinates) {
-                var regEx = new RegExp("^[A-Ja-j]10$|^[A-Ja-j][0-9]$");
-                var valid = regEx.test(coordinates);
-                return valid;
-            };
-            this.AreGridCellsEqual = function (cellOne, cellTwo) {
-                if (cellOne === null || cellOne === undefined || cellTwo === null || cellTwo === undefined) {
-                    return false;
-                }
-                return cellOne.Horizontal === cellTwo.Horizontal && cellOne.Vertical === cellTwo.Vertical;
-            };
-            this.Horizontal = x;
-            this.Vertical = y;
+            this.horizontal = x;
+            this.vertical = y;
         }
         return GridCell;
-    }());
+    })();
     Grid.GridCell = GridCell;
     function parse(cell) {
         var isValid = this.gridStringValid(cell);
@@ -38,7 +27,7 @@ var Grid;
         if (cellOne === null || cellOne === undefined || cellTwo === null || cellTwo === undefined) {
             return false;
         }
-        return cellOne.Horizontal === cellTwo.Horizontal && cellOne.Vertical === cellTwo.Vertical;
+        return cellOne.horizontal === cellTwo.horizontal && cellOne.vertical === cellTwo.vertical;
     }
     Grid.areGridCellsEqual = areGridCellsEqual;
 })(Grid || (Grid = {}));

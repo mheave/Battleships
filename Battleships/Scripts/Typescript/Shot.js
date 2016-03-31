@@ -1,11 +1,11 @@
-var Shot;
-(function (Shot_1) {
+var Shots;
+(function (Shots) {
     var Shot = (function () {
         function Shot(cell, hit) {
-            this.CoordinatesOfShot = cell;
-            this.DidHit = hit;
+            this.coordinatesOfShot = cell;
+            this.didHit = hit;
         }
         return Shot;
-    }());
-    Shot_1.Shot = Shot;
-})(Shot || (Shot = {}));
+    })();
+    Shots.Shot = Shot;
+})(Shots || (Shots = {}));

@@ -3,7 +3,7 @@ var Battleships;
     var BattleshipsGame = (function () {
         function BattleshipsGame() {
             var _this = this;
-            this.TakeShot = function (shotCoordinates) {
+            this.takeShot = function (shotCoordinates) {
                 if (!Grid.gridStringValid(shotCoordinates)) {
                     return "invalid coordinates";
                 }
@@ -11,65 +11,71 @@ var Battleships;
                 if (gridCell === null) {
                     return "cant generate cell";
                 }
-                if (_this.CellAlreadyShotAt(gridCell)) {
+                if (_this.cellAlreadyShotAt(gridCell)) {
                     return "already shot at";
                 }
-                var shipHit = _this.ReturnShipHit(gridCell);
+                var shipHit = _this.returnShipHit(gridCell);
                 if (shipHit === null) {
                     return "miss";
                 }
-                if (_this.WasShotFatalBlow(shipHit)) {
+                if (_this.wasShotFatalBlow(shipHit)) {
                     return "fatality!";
                 }
                 return "Hit on ship";
             };
-            this.CellAlreadyShotAt = function (cell) {
-                var existingShot = _this.Shots.filter(function (s) { return Grid.areGridCellsEqual(s.CoordinatesOfShot, cell); });
+            this.cellAlreadyShotAt = function (cell) {
+                var existingShot = _this.shots.filter(function (s) { return Grid.areGridCellsEqual(s.coordinatesOfShot, cell); });
                 if (existingShot.length > 0) {
                     return true;
                 }
                 return false;
             };
-            this.ReturnShipHit = function (cell) {
-                var shipHit = _this.ReturnIndexOfShipWhichHasComponentAtCoordinate(cell);
+            this.returnShipHit = function (cell) {
+                var shipHit = _this.returnIndexOfShipWhichHasComponentAtCoordinate(cell);
                 if (shipHit === -1) {
-                    _this.RecordShot(cell, false);
+                    _this.recordShot(cell, false);
                     return null;
                 }
-                _this.RecordShot(cell, true);
+                _this.recordShot(cell, true);
+                _this.setShipComponentToHit(shipHit, cell);
                 return shipHit;
             };
-            this.ReturnIndexOfShipWhichHasComponentAtCoordinate = function (cell) {
-                for (var s = 0; s < _this.Ships.length; s++) {
-                    var ship = _this.Ships[s];
-                    var matchingCoordinates = ship.Components.filter(function (c) { return Grid.areGridCellsEqual(c.Coordinates, cell); });
+            this.returnIndexOfShipWhichHasComponentAtCoordinate = function (cell) {
+                for (var s = 0; s < _this.ships.length; s++) {
+                    var ship = _this.ships[s];
+                    var matchingCoordinates = ship.components.filter(function (c) { return Grid.areGridCellsEqual(c.coordinates, cell); });
                     if (matchingCoordinates.length > 0) {
                         return s;
                     }
                 }
                 return -1;
             };
-            this.RecordShot = function (cell, didHit) {
-                _this.Shots.push(new Shot.Shot(cell, didHit));
+            this.recordShot = function (cell, didHit) {
+                _this.shots.push(new Shots.Shot(cell, didHit));
             };
-            this.SetShipComponentToHit = function (shipIndex, cell) {
-                var ship = _this.Ships[shipIndex];
-                for (var s = 0; s < ship.Components.length; s++) {
-                    if (Grid.areGridCellsEqual(ship.Components[s].Coordinates, cell)) {
-                        _this.Ships[shipIndex].Components[s].HasBeenHit = true;
+            this.setShipComponentToHit = function (shipIndex, cell) {
+                var ship = _this.ships[shipIndex];
+                for (var s = 0; s < ship.components.length; s++) {
+                    if (Grid.areGridCellsEqual(ship.components[s].coordinates, cell)) {
+                        _this.ships[shipIndex].components[s].hasBeenHit = true;
                         break;
                     }
                 }
             };
-            this.WasShotFatalBlow = function (shipIndex) {
-                var shipHit = _this.Ships[shipIndex];
-                return shipHit.Components.every(function (c) { return c.HasBeenHit; });
+            this.wasShotFatalBlow = function (shipIndex) {
+                var shipHit = _this.ships[shipIndex];
+                return shipHit.components.every(function (c) { return c.hasBeenHit; });
             };
-            var shipGenerator = new Ship.ShipGenerator();
-            this.Ships = shipGenerator.Ships;
-            this.Shots = new Array();
+            this.allShipsDestroyed = function () {
+                var shipsDestroyed = _this.ships.every(function (s) { return s.components.every(function (c) { return c.hasBeenHit; }); });
+                console.log(shipsDestroyed);
+                return shipsDestroyed;
+            };
+            var shipGenerator = new ShipGenerators.ShipGenerator();
+            this.ships = shipGenerator.ships;
+            this.shots = new Array();
         }
         return BattleshipsGame;
-    }());
+    })();
     Battleships.BattleshipsGame = BattleshipsGame;
 })(Battleships || (Battleships = {}));

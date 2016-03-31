@@ -7,6 +7,10 @@
             this.horizontal = x;
             this.vertical = y;
         }
+
+        toString = () => {
+            return this.horizontal + this.vertical;
+        }
     }
 
     export function parse(cell: string) {

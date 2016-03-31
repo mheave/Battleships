@@ -2,6 +2,10 @@ var Grid;
 (function (Grid) {
     var GridCell = (function () {
         function GridCell(x, y) {
+            var _this = this;
+            this.toString = function () {
+                return _this.horizontal + _this.vertical;
+            };
             this.horizontal = x;
             this.vertical = y;
         }

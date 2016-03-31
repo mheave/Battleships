@@ -11,28 +11,28 @@
 
         takeShot = (shotCoordinates: string) => {
             if (!Grid.gridStringValid(shotCoordinates)) {
-                return "invalid coordinates";
+                return "The coordinates you have entered are invalid. Please enter coordinates in the range [A-J][1-10].";
             }
 
             var gridCell = Grid.parse(shotCoordinates);
-            if (gridCell === null) {
-                return "cant generate cell";
+            if (gridCell === null || gridCell === undefined) {
+                return "The coordinates you have entered are invalid. Please enter coordinates in the range [A-J][1-10].";
             }
 
             if (this.cellAlreadyShotAt(gridCell)) {
-                return "already shot at";
+                return "You have already shot at cell " + gridCell.toString();
             }
 
             var shipHit = this.returnShipHit(gridCell);
             if (shipHit === null) {
-                return "miss";
+                return "Shot at cell " + gridCell.toString() + " missed!";
             }
 
-            if (this.wasShotFatalBlow(shipHit)) {
-                return "fatality!";
+            if (this.wasShotFatalBlow(shipHit)) {             
+                return "You have destroyed " + this.ships[shipHit].name + "!";
             }
 
-            return "Hit on ship";
+            return "Direct hit on " + this.ships[shipHit].name + " at grid position " + gridCell.toString();
         }
 
         cellAlreadyShotAt = (cell: Grid.GridCell) => {
@@ -84,10 +84,8 @@
             return shipHit.components.every((c) => c.hasBeenHit);
         }
 
-        allShipsDestroyed = () => {
-            var shipsDestroyed = this.ships.every((s) => s.components.every((c) => c.hasBeenHit));
-            console.log(shipsDestroyed);
-            return shipsDestroyed;
+        allShipsDestroyed = () => {            
+            return this.ships.every((s) => s.components.every((c) => c.hasBeenHit));
         }
     }
 }

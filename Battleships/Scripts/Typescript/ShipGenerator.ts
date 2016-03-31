@@ -11,8 +11,8 @@
         generateShips = () => {
             this.ships = new Array<Ships.Ship>();
             this.addRandomShip("Battleship", 5);
-           // this.addRandomShip("DestroyerOne", 4);
-           // this.addRandomShip("DestroyerTwo", 4);
+            this.addRandomShip("Destroyer One", 4);
+            this.addRandomShip("Destroyer Two", 4);
         }    
 
         addRandomShip = (name: string, size: number) => {

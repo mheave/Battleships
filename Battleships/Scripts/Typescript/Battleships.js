@@ -5,23 +5,23 @@ var Battleships;
             var _this = this;
             this.takeShot = function (shotCoordinates) {
                 if (!Grid.gridStringValid(shotCoordinates)) {
-                    return "invalid coordinates";
+                    return "The coordinates you have entered are invalid. Please enter coordinates in the range [A-J][1-10].";
                 }
                 var gridCell = Grid.parse(shotCoordinates);
-                if (gridCell === null) {
-                    return "cant generate cell";
+                if (gridCell === null || gridCell === undefined) {
+                    return "The coordinates you have entered are invalid. Please enter coordinates in the range [A-J][1-10].";
                 }
                 if (_this.cellAlreadyShotAt(gridCell)) {
-                    return "already shot at";
+                    return "You have already shot at cell " + gridCell.toString();
                 }
                 var shipHit = _this.returnShipHit(gridCell);
                 if (shipHit === null) {
-                    return "miss";
+                    return "Shot at cell " + gridCell.toString() + " missed!";
                 }
                 if (_this.wasShotFatalBlow(shipHit)) {
-                    return "fatality!";
+                    return "You have destroyed " + _this.ships[shipHit].name + "!";
                 }
-                return "Hit on ship";
+                return "Direct hit on " + _this.ships[shipHit].name + " at grid position " + gridCell.toString();
             };
             this.cellAlreadyShotAt = function (cell) {
                 var existingShot = _this.shots.filter(function (s) { return Grid.areGridCellsEqual(s.coordinatesOfShot, cell); });
@@ -67,9 +67,7 @@ var Battleships;
                 return shipHit.components.every(function (c) { return c.hasBeenHit; });
             };
             this.allShipsDestroyed = function () {
-                var shipsDestroyed = _this.ships.every(function (s) { return s.components.every(function (c) { return c.hasBeenHit; }); });
-                console.log(shipsDestroyed);
-                return shipsDestroyed;
+                return _this.ships.every(function (s) { return s.components.every(function (c) { return c.hasBeenHit; }); });
             };
             var shipGenerator = new ShipGenerators.ShipGenerator();
             this.ships = shipGenerator.ships;

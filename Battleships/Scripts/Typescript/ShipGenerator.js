@@ -6,8 +6,8 @@ var ShipGenerators;
             this.generateShips = function () {
                 _this.ships = new Array();
                 _this.addRandomShip("Battleship", 5);
-                // this.addRandomShip("DestroyerOne", 4);
-                // this.addRandomShip("DestroyerTwo", 4);
+                _this.addRandomShip("Destroyer One", 4);
+                _this.addRandomShip("Destroyer Two", 4);
             };
             this.addRandomShip = function (name, size) {
                 var columnToPlaceShip = _this.columns[Math.round(Math.random() * 9)];

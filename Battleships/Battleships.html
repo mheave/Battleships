@@ -2,47 +2,97 @@
 <html>
 <head>
     <title>Battleships - by Mark Heaver</title>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <script type="text/javascript" src="Scripts/JS/BattleshipConcat.js"></script>
 	<meta charset="utf-8" />
 </head>
 <body onload="setupUIBindings()">
 
-<h1>Battleships</h1>
+    <div class="page-header text-center">
+        <h1>Battleships <small>by Mark Heaver</small></h1>
+    </div>
 
-<div>
-    <label for="shotCoordinates">Shoot at: </label><input type="text" id="shotCoordinates"/> <input type="button" id="shootButton" value="Shoot!"/>
+<div id="gameInProgress">
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="panel-title"><strong>Enter target location</strong></div>
+                </div>
+                <div class="panel-body">
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span></span>
+                        <input type="text" class="form-control" id="shotCoordinates" placeholder="Enter grid reference">
+                        <span class="input-group-btn">
+                                <button class="btn btn-primary" id="shootButton" type="button"><span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span> Shoot!</button>
+                            </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <div class="alert alert-info" role="alert"><strong id="shotResult">Take a shot!</strong></div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
 </div>
 
-<div id="shotResult"></div>
-
+<div id="gameOver" class="hidden">
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <div class="alert alert-success" role="alert">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> <strong>Congratulations!</strong> You successfully sunk all of the ships in <span class="badge" id="noOfShots"></span> shots!   
+            </div>
+            <div class="btn btn-primary" onclick="location.reload();"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Play again</div>               
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</div>
 
 <script type="text/javascript">
     var game = new Battleships.BattleshipsGame();
+    var gameInProgressContainer, gameOverContainer;
     var targetInput, shootbutton, shotResult;
+    var noOfShots;
 
     function setupUIBindings() {
+        gameInProgressContainer = document.getElementById('gameInProgress');
+        gameOverContainer = document.getElementById('gameOver');
+        noOfShots = document.getElementById('noOfShots');
         targetInput = document.getElementById('shotCoordinates');
         shootbutton = document.getElementById('shootButton');
         shotResult = document.getElementById('shotResult');
-
-        shootbutton.addEventListener('click', function () {
-            var shootAt = targetInput.value;
-            var result = game.takeShot(shootAt);
-            shotResult.textContent = result;
-            targetInput.value = "";
-            if (game.allShipsDestroyed()) {
-                gameOver();
+        shootbutton.addEventListener('click', function () { shotTaken(targetInput.value); });
+        targetInput.addEventListener('keypress', (e) => {
+            var key = e.which || e.keyCode;
+            if (key === 13) {
+                shotTaken(targetInput.value);
             }
         });
     }
 
-    function gameOver() {
-        targetInput.disabled = true;
-        shootbutton.disabled = true;
-        shotResult.textContent = "Congratulations! you have sunk all of the ships!";
+    function shotTaken(target) {
+        var result = game.takeShot(target);
+        shotResult.textContent = result;
+        targetInput.value = "";
+        if (game.allShipsDestroyed()) {
+            gameOver();
+        }
+
     }
 
-
-</script>
+    function gameOver() {
+        gameInProgressContainer.className = "hidden";
+        noOfShots.textContent = game.shots.length;
+        gameOverContainer.className = "";
+    }
+    </script>
 </body>
 </html>

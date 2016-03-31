@@ -60,7 +60,7 @@ namespace BattleshipsConsole
                 return false;
             }
             var componentHit = shipHit.Components.FirstOrDefault(c => _gridCellComparer.Equals(c.Coordinates, shotCoordinates));
-            componentHit.HasBeenHit = true;
+            if (componentHit != null) componentHit.HasBeenHit = true;
             RecordShot(shotCoordinates, true);
             return true;
         }
